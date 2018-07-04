@@ -1,0 +1,72 @@
+---
+title: "Inferential DA"
+author: "Darius Kharazi"
+date: "6/29/2018"
+output: pdf_document
+---
+
+```{r setup, include = FALSE}
+library(knitr)
+library(ggplot2)
+```
+
+## Overview
+
+There are two general hypotheses that we believe to be true:    
+1. We believe that there are not generally different tooth lengths for each type of supplement.    
+2. We believe that there are not generally different tooth lengths for each level of dose. 
+    
+Based on a 95% confidence interval, we decide to reject the null hypotheses and prefer the alternative hypotheses, since each p-value is extremely small. In other words, we believe that there are generally different tooth lengths for each type of supplement, and we believe that there are generally different tooth lengths for each level of dose.
+
+## Appendix
+
+```{r loaddata}
+## Load the data
+data <- ToothGrowth
+
+## Look at a summary of the data
+summary(data)
+
+## Look at the data's structure
+str(data)
+
+## Look at some of the data's entries
+head(data)
+
+## Convert the numeric 'dose' variable to a factor variable
+data$dose <- factor(data$dose)
+
+## Boxplots of tooth length for different supplement types
+with(data, boxplot(len~supp))
+
+## Levels of tooth length
+with(data, tapply(len, supp, mean))
+
+## Boxplots of tooth length for different doses
+with(data, boxplot(len~dose))
+
+## Levels of dose
+with(data, tapply(len, dose, mean))
+
+## Boxplots of overall tooth length
+ggplot(data, aes(dose, len, fill = dose)) +
+  facet_grid(.~supp, labeller = as_labeller(c("OJ" = "Orange Juice", "VC" = "Ascorbic Acid"))) +
+  labs(title = "The Effect of Vitamin C on Tooth Grown in Guinea Pigs",
+       x = "Dose (mg/day)",
+       y = "Tooth Length (cm)") +
+  scale_fill_discrete(name = "Dose") +
+  geom_boxplot()
+
+## Two sample t-test between different supplement types
+oj <- with(data, len[supp == "OJ"])
+vc <- with(data, len[supp == "VC"])
+t.test(oj, vc, alternative = "greater") # reject the null hypothesis
+
+## Two sample t-test between different levels of doses
+half <- with(data, len[dose == 0.5])
+one <- with(data, len[dose == 1])
+two <- with(data, len[dose == 2])
+t.test(one, half, alternative = "greater") # reject the null hypothesis
+t.test(two, one, alternative = "greater") # reject the null hypothesis
+t.test(two, half, alternative = "greater") # reject the null hypothesis
+```
