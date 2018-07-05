@@ -1,6 +1,6 @@
 ## Overview
 
-We're going to analyze the ToothGrowth data in the R datasets package. The ToothGrowth dataset demonstrates the effect of vitamin C on tooth growth in Guinea Pigs. The response is the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or ascorbic acid (a form of vitamin C and coded as VC). The data contains 60 observations and 3 variables. For more information about the ToothGrowth dataset, please refer to this [site](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/ToothGrowth.html).
+We're going to analyze the ToothGrowth data in the R datasets package. The ToothGrowth dataset demonstrates the effect of vitamin C on tooth growth in Guinea Pigs. The response is the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or ascorbic acid (a form of vitamin C and coded as VC). The data contains 60 observations and 3 variables. For more information about the ToothGrowth dataset, please refer [here](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/ToothGrowth.html).
 
 ## Variable Descriptions
 
